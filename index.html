@@ -21,6 +21,12 @@
                 Evento 3 comprado
             </label>
         </div>
+        <div class="row well">
+            <div class="col xs-6" ng-repeat="(key, value) in settings">
+                <h4>{{key}}</h4>
+                <div><input type="radio" ng-model="settings[key]" value="boton"/>{{boton}}</div>
+            </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -30,9 +36,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in datos">
+                <tr ng-repeat="item in datos" ng-class="settings.fila">
                     <td>{{$index + 1}}</td>
                     <td>{{item.evento}}</td>
+                    <td ng-style="{'background-color': settings.columna}">{{item.comprado}}</td>
                     <td>
                     <span ng-hide="item.comprado">Pendiente</span>
                     <span ng-show="item.comprado">Comprado</span>
@@ -57,7 +64,7 @@
                      { evento: "Final Futbol", comprado: false }
                  ];
                  
-                 $scope.botones = ["Red", "Green", "Blue"];
+                $scope.botones = ["Red", "Green", "Blue"];
 
                 $scope.settings = {
                     fila: "Red",
