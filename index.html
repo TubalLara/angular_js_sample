@@ -1,17 +1,46 @@
 ﻿<!DOCTYPE html>
 <html ng-app="sampleApp">
 <head>
-    <title>Directivas Angular JS</title>
+    <title>Directivas de Elementos y Eventos</title>
     <link href="styles/bootstrap.css" rel="stylesheet" />
-    <link href="styles/bootstrap-theme.css" rel="stylesheet" />
+    <link href="styles/bootstrap-theme.css" rel="stylesheet" />    
     <style>
-        .odd {background-color: lightblue}
-        .even {background-color: lightcoral}
+        td > *:first-child {font-weight: bold;}
+
+        tr.Red {background-color: red;}
+        tr.Green {background-color: green;}
+        tr.Blue {background-color: blue;}
     </style>
 </head>
 <body>
     <div class="panel" ng-controller="sampleCtrl">
-        <h3 class="panel-heading"></h3>
+        <h3 class="panel-heading">Directivas de Elementos y Eventos</h3>
+        <div class="checkbox well">
+            <label>
+                <input type="checkbox" ng-model="datos[2].comprado">
+                Evento 3 comprado
+            </label>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Evento</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in datos">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.evento}}</td>
+                    <td>
+                    <span ng-hide="item.comprado">Pendiente</span>
+                    <span ng-show="item.comprado">Comprado</span>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
         
     </div>
 
@@ -22,11 +51,18 @@
              .controller("sampleCtrl", function ($scope) {
 
                  $scope.datos = [
-                     { evento: "Final Fútbol", fecha: "10/05/2016" },
-                     { evento: "Pasarela Cibeles", fecha: "01/04/2017" },
-                     { evento: "Estreno Star Wars", fecha: "02/12/2016" },
-                     { evento: "Final Futbol", fecha: "21/11/2123" }
+                     { evento: "Final Fútbol", comprado: true },
+                     { evento: "Pasarela Cibeles", comprado: false },
+                     { evento: "Estreno Star Wars", comprado: false },
+                     { evento: "Final Futbol", comprado: false }
                  ];
+                 
+                 $scope.botones = ["Red", "Green", "Blue"];
+
+                $scope.settings = {
+                    fila: "Red",
+                    columna: "Green"
+                };
         });
     </script>
 </body>
