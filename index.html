@@ -7,9 +7,9 @@
     <style>
         td > *:first-child {font-weight: bold;}
 
-        tr.Red {background-color: red;}
-        tr.Green {background-color: green;}
-        tr.Blue {background-color: blue;}
+        .Red {background-color: red;}
+        .Green {background-color: green;}
+        .Blue {background-color: blue;}
     </style>
 </head>
 <body>
@@ -48,6 +48,14 @@
                 </tr>
             </tbody>
         </table> -->
+        <div class="checkbox well">
+            <label>
+                <input type="checkbox" ng-model="datos">
+                Poner datos
+            </label>
+        </div>
+
+        <button class="btn btn-success" ng-disabled="datos">Botón</button>
         <div class="row well">
             
            <span ng-repeat="boton in botones">
@@ -71,10 +79,10 @@
                 </tr>
             </tbody> -->
             <tbody>
-                <tr ng-repeat="item in datos" ng-class="expression">
+                <tr ng-repeat="item in datos" ng-class="settings.fila" ng-mouseover="handler($event)" ng-mouseout="handler($event)">
                     <td>{{$index + 1}}</td>
                     <td>{{item.evento}}</td>
-                    <td>{{item.comprado}}</td>            
+                    <td ng-class="settings.columna">{{item.comprado}}</td>            
                 </tr>
             </tbody>
         </table>
@@ -86,7 +94,7 @@
         angular.module("sampleApp", [])
              .controller("sampleCtrl", function ($scope) {
 
-                 $scope.datos = [
+                /* $scope.datos = [
                      { evento: "Final Fútbol", comprado: true },
                      { evento: "Pasarela Cibeles", comprado: false },
                      { evento: "Estreno Star Wars", comprado: false },
@@ -103,7 +111,8 @@
                 $scope.handler = function(event) {
                     console.log("tipo evento: " + event.type);
                     $scope.settings.columna = event.type === "mouseover" ? "Green" : "Blue";
-                };
+                };*/
+                $scope.datos = false;
         });
     </script>
 </body>
